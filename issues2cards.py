@@ -21,24 +21,9 @@ def readfile(path: str) -> str:
 
 def getconf():
 	parser = argparse.ArgumentParser(description="Update Trello board from Github issues.")
-# 	parser.add_argument(
-# 		'-r', '--repo', action='append', dest='repo', default=[],
-# 		help="Github repository to check for new issues.")
 	parser.add_argument(
 		'-c', '--conf', action='store', dest='conf',
 		help="Configuration file.")
-# 	parser.add_argument(
-# 		'-t', '--gh-token', action='store', dest='gh_token',
-# 		help="Github access token.")
-# 	parser.add_argument(
-# 		'--trello-apikey', action='store', dest='trello_apikey',
-# 		help="Trello API key.")
-# 	parser.add_argument(
-# 		'--trello-apitoken', action='store', dest='trello_apitoken',
-# 		help="Trello API Token.")
-# 	parser.add_argument(
-# 		'-d', '--horizon-days', action='store', dest='horizon_days',
-# 		help="Max number of days since last modified an issue to be included.")
 
 	args = parser.parse_args()
 	conf = {}
@@ -53,14 +38,6 @@ def getconf():
 			'token': readfile('.trello_apitoken').strip(),
 		},
 	})
-
-# 	conf = {
-# 		'gh-token': args.gh_token or conf['gh-token'],
-# 		'repos': conf.get('repos', []) + (args.repo),
-# 		'horizon_days': args.horizon_days or conf['horizon_days'],
-# 		'tr-apikey': args.trello_apikey or conf.get('trello-api', {}).get('key', None),
-# 		'tr-apitoken': args.trello_apitoken or conf.get('trello-api', {}).get('token', None),
-# 	}
 	return conf
 
 
@@ -106,10 +83,6 @@ print(f"user: {user.name}")
 
 repo = g.get_repo('Kong/kong')
 print(f"repo name: {repo.name}")
-
-# labels = repo.get_labels()
-# print(f"labels: {labels}")
-# sys.stdout.flush()
 
 issues = repo.get_issues(state='open')
 print(f"open issues: {issues.totalCount}")
