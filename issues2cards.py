@@ -84,8 +84,18 @@ def addIssueCard(issue, list_id, conf):
 	return card_id
 
 
+def moveCard(card, dest_list_id, conf):
+	card_id = card['id']
+	res = requests.put(f'https://api.trello.com/1/cards/{card_id}', params={
+		'idList': dest_list_id,
+
+		'key': conf['trello-api']['key'],
+		'token': conf['trello-api']['token'],
+	})
+
+
 conf = getconf()
-print("..args:", conf)
+# print("..args:", conf)
 
 g = Github(conf['gh-token'])
 
@@ -115,9 +125,9 @@ else:
 print(f"recent issues: {len(recent_issues)}")
 sys.stdout.flush()
 
-no_label_issues = [i for i in recent_issues if not i.labels]
-print(f"no-label issues: {len(no_label_issues)}")
-sys.stdout.flush()
+# no_label_issues = [i for i in recent_issues if not i.labels]
+# print(f"no-label issues: {len(no_label_issues)}")
+# sys.stdout.flush()
 
 # boards = requests.get(
 # 	'https://api.trello.com/1/members/me/boards',
@@ -168,9 +178,14 @@ for i in recent_issues:
 			new_activity.append((i, c))
 
 print(f"new activity in {len(new_activity)} issues")
+sys.stdout.flush()
 
-# for i in new_issues:
-# 	addIssueCard(i, list_ids['new-issues], conf)
+print("adding..")
+sys.stdout.flush()
+for i in new_issues:
+	addIssueCard(i, list_ids['new-issues'], conf)
 
-# for i, c in new_activity:
-# 	moveCard(c, list_ids['activity'])
+print("moving..")
+sys.stdout.flush()
+for i, c in new_activity:
+	moveCard(c, list_ids['activity'], conf)
