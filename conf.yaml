@@ -1,0 +1,20 @@
+repos:
+  - Kong/kong
+  - Kong/kong-plugin-azure-functions
+  - Kong/kong-plugin-zpikin
+  - Kong/kong-plugin-serverless-functions
+  - Kong/kong-plugin-prometheus
+  - Kong/kong-plugin-proxy-cache
+  - Kong/kong-plugin-request-transformer
+  - Kong/kong-plugin-session
+  - Kong/kong-plugin-acme
+  - Kong/kong-plugin-grpc-web
+  - Kong/lua-multipart
+horizon_days: 15
+
+board:
+  id: 5f5ff8580762da8bde32b671
+  lists:
+    new-issues: 5f5ff865de59377134747476
+    waiting: 5f5ff86ba66dbd38bac2b6bd
+    activity: 5f5ff87c76a5120b80bdf340
