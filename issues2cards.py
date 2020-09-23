@@ -22,7 +22,7 @@ def readfile(path: str) -> str:
 def getconf():
 	parser = argparse.ArgumentParser(description="Update Trello board from Github issues.")
 	parser.add_argument(
-		'-c', '--conf', action='store', dest='conf',
+		'-c', '--conf', action='store', dest='conf', default='conf.yaml',
 		help="Configuration file.")
 
 	args = parser.parse_args()
